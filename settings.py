@@ -1,5 +1,13 @@
 # Game Setup
 # Screen can be Modified (Need Bigger Map)
+
+# Keyboard Setting:
+# Q: Change Weapon
+# E: Change Magic
+# Space: Melee Attack
+# Left Ctrl: Magic Cast
+# Arrow Key: Move
+
 WIDTH = 1280
 HEIGTH = 720
 FPS = 60
