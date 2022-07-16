@@ -5,7 +5,7 @@ from support import *
 
 
 class Enemy(Entity):
-    def __init__(self, monster_name, pos, groups, obstacle_sprites, damage_player, trigger_death_particles):
+    def __init__(self, monster_name, pos, groups, obstacle_sprites, damage_player, trigger_death_particles, add_exp):
         # General Setup
         super().__init__(groups)
         self.sprite_type = 'enemy'
@@ -34,6 +34,7 @@ class Enemy(Entity):
         self.attack_cooldown = 400
         self.damage_player = damage_player
         self.trigger_death_particles = trigger_death_particles
+        self.add_exp = add_exp
         # Invincibility Timer
         self.vulnerable = True
         self.hit_time = None
@@ -64,7 +65,6 @@ class Enemy(Entity):
         if distance <= self.attack_radius and self.can_attack:
             if self.status != 'attack':
                 self.frame_index = 0
-
             self.status = 'attack'
         elif distance <= self.notice_radius:
             self.status = 'move'
@@ -87,20 +87,18 @@ class Enemy(Entity):
         if self.frame_index >= len(animation):
             if self.status == 'attack':
                 self.can_attack = False
-
             self.frame_index = 0
 
         self.image = animation[int(self.frame_index)]
         self.rect = self.image.get_rect(center=self.hitbox.center)
 
         if not self.vulnerable:
-            # Flicker
             alpha = self.wave_value()
             self.image.set_alpha(alpha)
         else:
             self.image.set_alpha(255)
 
-    def cooldown(self):
+    def cooldowns(self):
         current_time = pygame.time.get_ticks()
 
         if not self.can_attack:
@@ -118,7 +116,6 @@ class Enemy(Entity):
             if attack_type == 'weapon':
                 self.health -= player.get_full_weapon_damage()
             else:
-                # Magic Damage
                 self.health -= player.get_full_magic_damage()
 
             self.hit_time = pygame.time.get_ticks()
@@ -128,6 +125,7 @@ class Enemy(Entity):
         if self.health <= 0:
             self.kill()
             self.trigger_death_particles(self.rect.center, self.monster_name)
+            self.add_exp(self.exp)
 
     def hit_reaction(self):
         if not self.vulnerable:
@@ -137,7 +135,7 @@ class Enemy(Entity):
         self.hit_reaction()
         self.move(self.speed)
         self.animate()
-        self.cooldown()
+        self.cooldowns()
         self.check_death()
 
     def enemy_update(self, player):
