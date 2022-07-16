@@ -8,6 +8,9 @@
 # Left Ctrl: Magic Cast
 # Arrow Key: Move
 
+# M: Upgrade Menu
+# Space: Select Upgrade
+
 WIDTH = 1280
 HEIGTH = 720
 FPS = 60
@@ -31,6 +34,12 @@ TEXT_COLOR = '#EEEEEE'
 HEALTH_COLOR = 'red'
 ENERGY_COLOR = 'blue'
 UI_BORDER_COLOR_ACTIVE = 'gold'
+
+# Upgrade Menu
+TEXT_COLOR_SELECTED = '#111111'
+BAR_COLOR = '#EEEEEE'
+BAR_COLOR_SELECTED = '#111111'
+UPGRADE_COLOR_SELECTED = '#EEEEEE'
 
 # Weapons
 weapon_data = {
