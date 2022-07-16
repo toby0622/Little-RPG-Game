@@ -4,7 +4,11 @@
 
 ## Gameplay Screenshot:
 
-
+![alt text](https://github.com/toby0622/Little-RPG-Game/blob/main/Screenshots/ss1.png)
+![alt text](https://github.com/toby0622/Little-RPG-Game/blob/main/Screenshots/ss2.png)
+![alt text](https://github.com/toby0622/Little-RPG-Game/blob/main/Screenshots/ss3.png)
+![alt text](https://github.com/toby0622/Little-RPG-Game/blob/main/Screenshots/ss4.png)
+![alt text](https://github.com/toby0622/Little-RPG-Game/blob/main/Screenshots/ss5.png)
 
 --- 
 
